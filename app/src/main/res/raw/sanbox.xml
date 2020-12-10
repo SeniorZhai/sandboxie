@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<column>
+<column color="0XFFAA66">
     <text text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】据Skew数据显示，加密资产管理公司BitwiseAssetManagement的Bitwise10加密指数基金（BITW）昨日开始在场外交易，开盘首日交易46.5万股，约合1400万美元。
         此前报道，Bitwise10加密指数基金已正式面向美国投资者公开发行，并在美国证券交易场外市场（OTCMarkets）旗下OTCQX挂牌交易，代码为BITW。该指数基金成立于2017年11月，跟踪BTC、ETH、LTC和其他市值排名前10位的加密货币，此前一直非公开发行。" />
     <image
