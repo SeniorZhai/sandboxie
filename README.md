@@ -1,5 +1,5 @@
 # Sandboxie
-将既定规则的xml转换成View的工具
+将既定规则的xml转换成View的渲染工具
 
 ## 容器
 用于排列子项
@@ -45,4 +45,6 @@
 - round 设置圆角
 
 ## TODO
+- version 用于标记当前渲染器版本
 - action
+- image circle
