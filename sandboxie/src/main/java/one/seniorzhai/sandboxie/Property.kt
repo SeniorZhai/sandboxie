@@ -7,5 +7,12 @@ enum class Property {
     size,
     text,
     flex,
-    gravity
+    gravity,
+    color,
+    url,
+    round,
+    top,
+    bottom,
+    left,
+    right
 }

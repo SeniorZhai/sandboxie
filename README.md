@@ -34,7 +34,15 @@
 - width 限制宽度
 - height 限制高度
 - padding 内边距
+- margin 外边距
+    + left
+    + right
+    + top
+    + bottom
 
 ### 容器属性
 - gravity
+- round 设置圆角
 
+## TODO
+- action

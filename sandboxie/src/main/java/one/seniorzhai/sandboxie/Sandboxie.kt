@@ -96,8 +96,11 @@ class Sandboxie(val context: Context, val str: String) {
                 xmlReader.getAttributeValue(Property.width.name)?.toSize ?: MATCH_PARENT
             val height =
                 xmlReader.getAttributeValue(Property.height.name)?.toSize ?: WRAP_CONTENT
-            val url = xmlReader.getAttributeValue("url")
-            containerStack.lastElement().addView(this, LinearLayout.LayoutParams(width, height))
+            val url = xmlReader.getAttributeValue(Property.url.name)
+            containerStack.lastElement()
+                .addView(this, LinearLayout.LayoutParams(width, height).apply {
+                    configMargin(this, xmlReader)
+                })
             Glide.with(context).load(url).centerCrop().into(this)
         }
     }
@@ -118,7 +121,7 @@ class Sandboxie(val context: Context, val str: String) {
             xmlReader.getAttributeValue(Property.size.name)?.toFloat()?.let {
                 this.setTextSize(TypedValue.COMPLEX_UNIT_SP, it)
             }
-            xmlReader.getAttributeValue("color")?.let {
+            xmlReader.getAttributeValue(Property.color.name)?.let {
                 this.setTextColor(Color.parseColor(it))
             }
             containerStack.lastElement()
@@ -126,6 +129,7 @@ class Sandboxie(val context: Context, val str: String) {
                     this,
                     LinearLayout.LayoutParams(width, height)
                         .apply {
+                            configMargin(this, xmlReader)
                             xmlReader.getAttributeValue(Property.flex.name)?.toFloat()
                                 ?.let { flex ->
                                     weight = flex
@@ -144,10 +148,10 @@ class Sandboxie(val context: Context, val str: String) {
         linearLayout.apply {
             val color =
                 Color.parseColor(
-                    xmlReader.getAttributeValue("color") ?: "#00000000"
+                    xmlReader.getAttributeValue(Property.color.name) ?: "#00000000"
                 )
             background = ColorDrawable(color)
-            xmlReader.getAttributeValue("round")?.toSize?.let {
+            xmlReader.getAttributeValue(Property.round.name)?.toSize?.let {
                 this.round(it)
             }
             xmlReader.getAttributeValue(Property.gravity.name)?.let {
@@ -166,6 +170,7 @@ class Sandboxie(val context: Context, val str: String) {
                 containerStack.lastElement().addView(
                     this,
                     LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
+                        configMargin(this, xmlReader)
                         xmlReader.getAttributeValue(Property.flex.name)?.toFloat()
                             ?.let { flex ->
                                 weight = flex
@@ -174,6 +179,24 @@ class Sandboxie(val context: Context, val str: String) {
                 )
             }
             containerStack.push(this)
+        }
+    }
+
+    private fun configMargin(
+        layoutParams: LinearLayout.LayoutParams,
+        xmlReader: XmlReader
+    ) {
+        xmlReader.getAttributeValue(Property.top.name)?.toSize?.let {
+            layoutParams.topMargin = it
+        }
+        xmlReader.getAttributeValue(Property.bottom.name)?.toSize?.let {
+            layoutParams.bottomMargin = it
+        }
+        xmlReader.getAttributeValue(Property.left.name)?.toSize?.let {
+            layoutParams.leftMargin = it
+        }
+        xmlReader.getAttributeValue(Property.right.name)?.toSize?.let {
+            layoutParams.rightMargin = it
         }
     }
 }
