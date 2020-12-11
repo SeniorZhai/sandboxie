@@ -3,13 +3,10 @@ package one.seniorzhai.sandboxie
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
-import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
@@ -17,7 +14,6 @@ import android.widget.LinearLayout
 import android.widget.LinearLayout.HORIZONTAL
 import android.widget.LinearLayout.VERTICAL
 import android.widget.TextView
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.view.setPadding
 import com.bumptech.glide.Glide
 import org.xmlpull.v1.XmlPullParser
@@ -44,89 +40,23 @@ class Sandboxie(val context: Context, val str: String) {
                         xmlReader.getName() == Tag.row.name -> {
                             LinearLayout(context).apply {
                                 orientation = HORIZONTAL
-                                val color =
-                                    Color.parseColor(
-                                        xmlReader.getAttributeValue("color") ?: "#00000000"
-                                    )
-                                background = ColorDrawable(color)
-                                xmlReader.getAttributeValue("cross")?.let {
-                                    when (it) {
-                                        "center" -> gravity = Gravity.CENTER_VERTICAL
-                                    }
-                                }
-                                xmlReader.getAttributeValue("padding")?.toInt()?.let {
-                                    setPadding(it)
-                                }
-                                if (containerStack.isNotEmpty()) {
-                                    containerStack.lastElement().addView(
-                                        this,
-                                        LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-                                    )
-                                }
-                                containerStack.push(this)
+                                configContainer(this, xmlReader, containerStack)
                             }
                         }
                         xmlReader.getName() == Tag.column.name -> {
                             LinearLayout(context).apply {
                                 orientation = VERTICAL
-                                val color =
-                                    Color.parseColor(
-                                        xmlReader.getAttributeValue("color") ?: "#00000000"
-                                    )
-                                background = ColorDrawable(color)
-                                xmlReader.getAttributeValue("cross")?.let {
-                                    when (it) {
-                                        "center" -> gravity = Gravity.CENTER_HORIZONTAL
-                                    }
-                                }
-                                xmlReader.getAttributeValue("padding")?.toInt()?.let {
-                                    setPadding(it)
-                                }
-                                if (containerStack.isNotEmpty()) {
-                                    containerStack.lastElement().addView(
-                                        this,
-                                        LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-                                    )
-                                }
-                                containerStack.push(this)
+                                configContainer(this, xmlReader, containerStack)
                             }
                         }
                         xmlReader.getName() == Tag.image.name -> {
                             ImageView(context).apply {
-                                val width =
-                                    xmlReader.getAttributeValue("width")?.toInt() ?: MATCH_PARENT
-                                val height =
-                                    xmlReader.getAttributeValue("height")?.toInt() ?: WRAP_CONTENT
-                                val url = xmlReader.getAttributeValue("url")
-                                containerStack.lastElement()
-                                    .addView(this, LinearLayout.LayoutParams(width, height))
-                                Log.d(TAG, "$url $width $height")
-                                Glide.with(context).load(url).centerCrop().into(this)
+                                configImage(this, xmlReader, containerStack)
                             }
                         }
                         xmlReader.getName() == Tag.text.name -> {
                             TextView(context).apply {
-                                containerStack.lastElement()
-                                    .addView(
-                                        this,
-                                        LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-                                            .apply {
-                                                xmlReader.getAttributeValue("flex")?.toFloat()
-                                                    ?.let { flex ->
-                                                        weight = flex
-                                                    }
-                                            }
-                                    )
-                                xmlReader.getAttributeValue("padding")?.toInt()?.let {
-                                    setPadding(it)
-                                }
-                                xmlReader.getAttributeValue("size")?.toFloat()?.let {
-                                    this.setTextSize(TypedValue.COMPLEX_UNIT_SP, it)
-                                }
-                                xmlReader.getAttributeValue("color")?.let {
-                                    this.setTextColor(Color.parseColor(it))
-                                }
-                                this.text = xmlReader.getAttributeValue("text")
+                                configText(this, xmlReader, containerStack)
                             }
                         }
                     }
@@ -157,7 +87,93 @@ class Sandboxie(val context: Context, val str: String) {
         return containerStack.pop()
     }
 
-    enum class Tag {
-        row, column, text, image
+    private fun configImage(
+        imageView: ImageView, xmlReader: XmlReader,
+        containerStack: Stack<LinearLayout>
+    ) {
+        imageView.apply {
+            val width =
+                xmlReader.getAttributeValue(Property.width.name)?.toSize ?: MATCH_PARENT
+            val height =
+                xmlReader.getAttributeValue(Property.height.name)?.toSize ?: WRAP_CONTENT
+            val url = xmlReader.getAttributeValue("url")
+            containerStack.lastElement().addView(this, LinearLayout.LayoutParams(width, height))
+            Glide.with(context).load(url).centerCrop().into(this)
+        }
+    }
+
+    private fun configText(
+        textView: TextView, xmlReader: XmlReader,
+        containerStack: Stack<LinearLayout>
+    ) {
+        textView.apply {
+            val width =
+                xmlReader.getAttributeValue(Property.width.name)?.toSize ?: MATCH_PARENT
+            val height =
+                xmlReader.getAttributeValue(Property.height.name)?.toSize ?: WRAP_CONTENT
+
+            xmlReader.getAttributeValue(Property.padding.name)?.toSize?.let {
+                setPadding(it)
+            }
+            xmlReader.getAttributeValue(Property.size.name)?.toFloat()?.let {
+                this.setTextSize(TypedValue.COMPLEX_UNIT_SP, it)
+            }
+            xmlReader.getAttributeValue("color")?.let {
+                this.setTextColor(Color.parseColor(it))
+            }
+            containerStack.lastElement()
+                .addView(
+                    this,
+                    LinearLayout.LayoutParams(width, height)
+                        .apply {
+                            xmlReader.getAttributeValue(Property.flex.name)?.toFloat()
+                                ?.let { flex ->
+                                    weight = flex
+                                }
+                        }
+                )
+            this.text = xmlReader.getAttributeValue(Property.text.name)
+        }
+    }
+
+    private fun configContainer(
+        linearLayout: LinearLayout,
+        xmlReader: XmlReader,
+        containerStack: Stack<LinearLayout>
+    ) {
+        linearLayout.apply {
+            val color =
+                Color.parseColor(
+                    xmlReader.getAttributeValue("color") ?: "#00000000"
+                )
+            background = ColorDrawable(color)
+            xmlReader.getAttributeValue("round")?.toSize?.let {
+                this.round(it)
+            }
+            xmlReader.getAttributeValue(Property.gravity.name)?.let {
+                when (it) {
+                    "center" -> gravity = Gravity.CENTER
+                    "top" -> gravity = Gravity.TOP
+                    "bottom" -> gravity = Gravity.BOTTOM
+                    "center_vertical" -> gravity = Gravity.CENTER_VERTICAL
+                    "center_horizontal" -> gravity = Gravity.CENTER_HORIZONTAL
+                }
+            }
+            xmlReader.getAttributeValue(Property.padding.name)?.toSize?.let {
+                setPadding(it)
+            }
+            if (containerStack.isNotEmpty()) {
+                containerStack.lastElement().addView(
+                    this,
+                    LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
+                        xmlReader.getAttributeValue(Property.flex.name)?.toFloat()
+                            ?.let { flex ->
+                                weight = flex
+                            }
+                    }
+                )
+            }
+            containerStack.push(this)
+        }
     }
 }

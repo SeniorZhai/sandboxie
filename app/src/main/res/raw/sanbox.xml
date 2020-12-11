@@ -1,18 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<column color="0XFFAA66">
-    <text text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】据Skew数据显示，加密资产管理公司BitwiseAssetManagement的Bitwise10加密指数基金（BITW）昨日开始在场外交易，开盘首日交易46.5万股，约合1400万美元。
-        此前报道，Bitwise10加密指数基金已正式面向美国投资者公开发行，并在美国证券交易场外市场（OTCMarkets）旗下OTCQX挂牌交易，代码为BITW。该指数基金成立于2017年11月，跟踪BTC、ETH、LTC和其他市值排名前10位的加密货币，此前一直非公开发行。" />
-    <image
-        width="64"
-        height="64"
-        url="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1612138888,1794405442&amp;fm=26&amp;gp=0.jpg" />
-    <row>
-        <text text="
-            【数据：Bitwise10加密指数基金首日交易约合1400万美元】据Skew数据显示，加密资产管理公司BitwiseAssetManagement的Bitwise10加密指数基金（BITW）昨日开始在场外交易，开盘首日交易46.5万股，约合1400万美元。
-            此前报道，Bitwise10加密指数基金已正式面向美国投资者公开发行，并在美国证券交易场外市场（OTCMarkets）旗下OTCQX挂牌交易，代码为BITW。该指数基金成立于2017年11月，跟踪BTC、ETH、LTC和其他市值排名前10位的加密货币，此前一直非公开发行。" />
-        <text text="欧洲区块链协会主席：监管机构承认稳定币是一种加密资产】12月10日消息，欧盟委员会CrowdFunding
-            Stakeholder小组顾问、欧洲区块链协会主席Michael
-            Gebert在接受专访时表示，关于监管机构正在关注稳定币，加密社区最初的反应是监管机构想要监管稳定币。就此我们已与欧盟委员会进行了交谈，监管机构并不反对将稳定币作为一种加密资产。他们是从货币和竞争性政策的角度进行研究，只是想确保他们现有的货币政策和竞争性政策不会被否决。这意味着将在现有结构和基础上构建解决方案。与此同时，针对拟议中的法规是否会促进更多与欧元挂钩的稳定货币产生，Michael
-            Gebert表示创建过程不会更容易，从货币的角度上看，会更加困难更加耗时和复杂。（BeInCrypto）" />
+<column
+    color="#FFFFFF"
+    round="8">
+    <row
+        cross="center"
+        padding="12">
+        <column flex="1">
+            <text
+                text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】"
+                flex="1" />
+            <text
+                padding="12"
+                color="#CCCCCC"
+                size="11"
+                text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
+        </column>
+
+        <image
+            width="32"
+            height="32"
+
+            url="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1709644436,2739756540&amp;fm=26&amp;gp=0.jpg" />
     </row>
+    <row
+        cross="center"
+        padding="12">
+        <column flex="1">
+            <text
+                text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】"
+                flex="1" />
+            <text
+                padding="12"
+                color="#CCCCCC"
+                size="11"
+                text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
+        </column>
+        <image
+            width="32"
+            height="32"
+            url="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1709644436,2739756540&amp;fm=26&amp;gp=0.jpg" />
+    </row>
+    <row
+        cross="center"
+        padding="12">
+        <column flex="1">
+            <text
+                text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】"
+                flex="1" />
+            <text
+                padding="12"
+                color="#CCCCCC"
+                size="11"
+                text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
+        </column>
+        <image
+            width="32"
+            height="32"
+            url="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1709644436,2739756540&amp;fm=26&amp;gp=0.jpg" />
+    </row>
+
 </column>
