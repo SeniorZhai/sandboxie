@@ -17,19 +17,20 @@ class MainActivity : AppCompatActivity() {
         val str = """
      <column color="#FFFFFF" round="8">
         <image height="120" 
-            url="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=81837432,2519168038&amp;fm=11&amp;gp=0.jpg" />
+            url="https://mixin.one/assets/244890a3709f8ba8c57cdec84aaca1cb.png" />
         <row gravity="center_vertical" padding="12">    
-            <text text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】" flex="1" right="8"/>
+            <text text="Mixin Messenger" flex="1" right="8"/>
             <image
                 width="32"
                 height="32"
-                url="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1709644436,2739756540&amp;fm=26&amp;gp=0.jpg" />
+                url="https://mixin.one/assets/e8f3c9ed28995902bfb20f26d8ce3477.png" />
         </row>
         <text
-            padding="12"
-            color="#CCCCCC"
+            left="12"
+            bottom="12"
+            color="#9C9C9C"
             size="11"
-            text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
+            text="开源的端对端加密聊天软件，并且集成了基于 Mixin Network 的多链钱包" />
     </column>
         """
 
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】"
                 flex="1" />
             <text
-                color="#CCCCCC"
+                color="#9C9C9C"
                 size="11"
                 text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
         </column>
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】"
                 flex="1" />
             <text
-                color="#CCCCCC"
+                color="#9C9C9C"
                 size="11"
                 text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
         </column>
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 text="【数据：Bitwise10加密指数基金首日交易约合1400万美元】"
                 flex="1" />
             <text
-                color="#CCCCCC"
+                color="#9C9C9C"
                 size="11"
                 text="12月10日消息，欧盟委员会CrowdFundingStakeholder小组顾问、欧洲区块链协会主席MichaelGebert在接受专访时表示" />
         </column>

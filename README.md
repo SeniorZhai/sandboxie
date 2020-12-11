@@ -1,5 +1,6 @@
 # Sandboxie
 将既定规则的xml转换成View的渲染工具
+![](https://raw.githubusercontent.com/SeniorZhai/sandboxie/main/screenshot/screenshot.jpeg)
 
 ## 容器
 用于排列子项
@@ -43,6 +44,32 @@
 ### 容器属性
 - gravity
 - round 设置圆角
+
+## 使用
+```kotlin
+       val str = """
+        <column color="#FFFFFF" round="8">
+             <image height="120"
+                 url="https://mixin.one/assets/244890a3709f8ba8c57cdec84aaca1cb.png" />
+             <row gravity="center_vertical" padding="12">
+                 <text text="Mixin Messenger" flex="1" right="8"/>
+                 <image
+                     width="32"
+                     height="32"
+                     url="https://mixin.one/assets/e8f3c9ed28995902bfb20f26d8ce3477.png" />
+             </row>
+             <text
+                 left="12"
+                 bottom="12"
+                 color="#9C9C9C"
+                 size="11"
+                 text="开源的端对端加密聊天软件，并且集成了基于 Mixin Network 的多链钱包" />
+        </column>
+        """
+
+    // 生成View
+    Sandboxie(this, str).build(),
+```
 
 ## TODO
 - version 用于标记当前渲染器版本
