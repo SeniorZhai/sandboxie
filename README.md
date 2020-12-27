@@ -78,3 +78,18 @@
 - image circle
 
 _test_ *test* **test** ~~test~~ `test`
+
+
+确认中的交易情况
+总耗时：63ms
+2020-12-27T05:35:46Z
+入账中
+• btc: 38笔，最长等待5103min
+• bsv: 1笔，最长等待230min
+• nmc: 15笔，最长等待198min
+• dash: 1笔，最长等待144min
+• doge: 1笔，最长等待112min
+• ltc: 1笔，最长等待60min
+• zec: 4笔，最长等待29min
+出账中
+• btc: 18笔，最长等待65min
